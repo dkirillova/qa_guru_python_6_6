@@ -38,6 +38,23 @@ def test_dark_theme_by_time_and_user_choice_1():
 
     assert is_dark_theme is True
 
+def test_dark_theme_by_time_and_user_choice():
+    current_time = time(hour=16)
+    dark_theme_enabled_by_user = True  #темная тема включена
+    is_dark_theme = False   #темная тема выключена
+
+    if dark_theme_enabled_by_user is None:
+        if time(hour=6) < current_time < time(hour=22):
+            is_dark_theme = False  #светлая тема
+        else:
+            is_dark_theme = True  #темная тема
+    else:
+        is_dark_theme = dark_theme_enabled_by_user  #принимается значение установленной пользователем
+
+    assert is_dark_theme is True
+
+
+
 def test_dark_theme_by_time_and_user_choice_2():
     current_time = time(hour=4)
     dark_theme_enabled_by_user = True
@@ -50,6 +67,8 @@ def test_dark_theme_by_time_and_user_choice_2():
         is_dark_theme = dark_theme_enabled_by_user
 
     assert is_dark_theme is True
+
+
 
 
 def test_dark_theme_by_time_and_user_choice_3():
